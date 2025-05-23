@@ -26,36 +26,33 @@ Use the previously written and tested functions. Add some test cases to the code
 def is_year_leap(year):
     return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
 
-def days_in_month(year, month):
-    if month == 2:
-        if is_year_leap(year) == True:
-            return 29
-        else:
-            return 28
-    
-    elif month in [4, 6, 9, 11]:
-        return 30
-    else:
-        return 31
+def daysInMonth(year, month):
+    monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    if is_year_leap(year) and month == 2:
+        return 29
+    return monthDays[month - 1]
     
 
 def day_of_year(year, month, day):
-    if year is None or month is None or day is None:
+    #validate inputs
+    if year <1582:
         return None
     
+    if month >12 or month <1:
+        return None
     
-    non_leap_year_days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    leap_year_days_in_month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    if day > daysInMonth(year, month) or day <1:
+        return None
     
-    if is_year_leap(year) == True:
-        previous_months_days = sum(leap_year_days_in_month[:month-1])
-        total = previous_months_days + day
-        return total
+    #calculate days
+    totalDays = day
+    month = month-1
     
-    else:
-        previous_months_days = sum(non_leap_year_days_in_month[:month-1])
-        total = previous_months_days + day
-        return total
+    while month > 0:
+        totalDays += daysInMonth(year, month)
+        month -= 1
+    
+    return totalDays
 
 
 print(day_of_year(2000, 12, 31))
