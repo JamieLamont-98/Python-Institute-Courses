@@ -38,9 +38,18 @@ Expected output
 
 ############################################################################################
 def liters_100km_to_miles_gallon(liters):
-    miles = 100* 1000/1609.3441
+    #calculates the number of miles in 100 kilometers
+    #100 kilometers is converted to meters (100*1000)
+    #then meters are converted to miles by dividing by 1609.344 (meters per mile)
+    miles_per_100km = 100 * 1000/1609.344
+    
+    #convert the input 'liters' (which represents liters per 100km)into gallons
+    #this is done by dividing the liters by the number of liters in a gallon
     gallons = liters/3.785411784
-    return miles/gallons
+    
+    #calculates miles per gallon by dividing miles per 100km
+    #by gallons consumed for that distance 
+    return miles_per_100km/gallons
 
 
 def miles_gallon_to_liters_100km(miles):
