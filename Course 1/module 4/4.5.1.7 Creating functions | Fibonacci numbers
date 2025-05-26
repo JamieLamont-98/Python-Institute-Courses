@@ -1,17 +1,37 @@
 def fib(n):
+    #this function calculate the nth Fibonacci number.
+    
+    #handle invalid input: If n is less than 1, Fibonacci sequence is not defined
+    #so return None
     if n < 1:
         return None
+    
+    #Base cases for the Fibonacci sequence:
+    #The first and second Fibonacci numbers are both 1.
     if n < 3:
         return 1
     
+    #initialise variables to store the preceding two Fibonacci numbers.
+    #elem_1 stores f(i-2) and elem_2 stores f(i-1)
     elem_1 = elem_2 = 1
+    #the sum will store the current Fibonacci number being calcuated.
     the_sum = 0
     
+    
+    #Iterate from the 3rd number up to and including the nth number.
+    #We've already handled n=1 and n=2 in the base cases
     for i in range(3, n+1):
+        #calculate the current Fibonacci number by summing the two preceding ones
         the_sum = elem_1 + elem_2
+        #update elem_1 + elem_2 for the next interation
+        # The old elem_2 becomes the new elem_1 (F(i-1) becomes F(i-2) for the next step)
+        # The newly calculated the_sum becomes the new elem_2 (F(i) becomes F(i-1) for the next step)
         elem_1, elem_2 = elem_2, the_sum
-        return the_sum
+        # After the loop completes, the_sum holds the nth Fibonacci number.
+    return the_sum
         
-
+# This loop iterates from n = 1 to n = 9 (inclusive).
+# For each value of n, it calls the fib() function to calculate the nth Fibonacci number
+# and then prints the input n and its corresponding Fibonacci number.
 for n in range(1,10):
     print(n, "->", fib(n))
