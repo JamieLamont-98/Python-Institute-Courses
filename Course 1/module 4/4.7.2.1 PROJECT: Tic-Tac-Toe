@@ -158,18 +158,22 @@ for i in range(10):
 Code
 from random import randrange
 
-board = [["1","X","3"],["4","5","6"],["7","8","9"]]
+board = [["1","2","3"],["4","5","6"],["7","8","9"]]
 
 def display_board(board):
     for x in board:
         print(x)
 
-"""
+
 def enter_move(board):
     # The function accepts the board's current status, asks the user about their move, 
     # checks the input, and updates the board according to the user's decision.
+    print()
     while True:
         user_move = int(input("Enter your move: "))
+        if user_move >9 or user_move <1:
+            print("Move is not between 1 and 9, choose again")
+            continue
         user_move -= 1
         user_move_row = user_move//3
         user_move_column = user_move %3
@@ -178,7 +182,7 @@ def enter_move(board):
         else:
             break
     board[user_move_row][user_move_column] = "X"
-    """
+    
    
 
 
@@ -194,6 +198,7 @@ def enter_move(board):
 
 def draw_move(board):
     # The function draws the computer's move and updates the board.
+    print("the computers move")
     while True:
         computer_move = randrange(9)
         computer_move_row = computer_move //3
@@ -206,3 +211,18 @@ def draw_move(board):
 
 
 
+display_board(board)
+
+draw_move(board)
+
+display_board(board)
+
+enter_move(board)
+
+display_board(board)
+
+draw_move(board)
+
+display_board(board)
+
+enter_move(board)
