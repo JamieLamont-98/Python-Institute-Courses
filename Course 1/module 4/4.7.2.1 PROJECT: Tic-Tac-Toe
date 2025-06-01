@@ -107,6 +107,8 @@ while win_status == "":
     sign = "X"
     display_board(board)
     win_status = victory_for(board,sign)
+    if win_status = "X":
+        break
     draw_move(board)
     print("computers_move")
     sign = "O"
