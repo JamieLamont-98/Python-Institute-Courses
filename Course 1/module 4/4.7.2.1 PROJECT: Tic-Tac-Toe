@@ -156,30 +156,44 @@ for i in range(10):
  
  Sandbox
 Code
+from random import randrange
+
+board = [["1","X","3"],["4","5","6"],["7","8","9"]]
+
 def display_board(board):
-# The function accepts one parameter containing the board's current status
-# and prints it out to the console.
+    for x in board:
+        print(x)
 
-
+"""
 def enter_move(board):
-# The function accepts the board's current status, asks the user about their move,
-# checks the input, and updates the board according to the user's decision.
+    # The function accepts the board's current status, asks the user about their move, 
+    # checks the input, and updates the board according to the user's decision.
+    while True:
+        user_move = int(input("Enter your move: "))
+        user_move -= 1
+        user_move_row = user_move//3
+        user_move_column = user_move %3
+        if "X" in board[user_move_row][user_move_column] or "O" in board[user_move_row][user_move_column]:
+            print("That square is already taken, choose again")
+        else:
+            break
+    board[user_move_row][user_move_column] = "X"
+    """
+   
 
 
-def make_list_of_free_fields(board):
-# The function browses the board and builds a list of all the free squares;
-# the list consists of tuples, while each tuple is a pair of row and column numbers.
+#def make_list_of_free_fields(board):
+    # The function browses the board and builds a list of all the free squares; 
+    # the list consists of tuples, while each tuple is a pair of row and column numbers.
 
 
-def victory_for(board, sign):
-# The function analyzes the board's status in order to check if
-# the player using 'O's or 'X's has won the game
+#def victory_for(board, sign):
+    # The function analyzes the board's status in order to check if 
+    # the player using 'O's or 'X's has won the game
 
 
-def draw_move(board):
-# The function draws the computer's move and updates the board.
+#def draw_move(board):
+    # The function draws the computer's move and updates the board.
+    
 
-board = [["1","2","3"],["4","5","6"],["7","8","9"]]
 
-
-Console 
