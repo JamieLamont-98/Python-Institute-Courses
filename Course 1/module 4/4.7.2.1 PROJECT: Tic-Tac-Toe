@@ -266,6 +266,7 @@ while win_status == "":
     display_board(board)
     victory_for(board,sign)
     draw_move(board)
+    print("computers_move")
     sign = "O"
     display_board(board)
     victory_for(board,sign)
