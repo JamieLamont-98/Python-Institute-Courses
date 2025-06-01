@@ -192,8 +192,17 @@ def enter_move(board):
     # the player using 'O's or 'X's has won the game
 
 
-#def draw_move(board):
+def draw_move(board):
     # The function draws the computer's move and updates the board.
-    
+    while True:
+        computer_move = randrange(9)
+        computer_move_row = computer_move //3
+        computer_move_column = computer_move % 3
+        if "X" not in board[computer_move_row][computer_move_column] and "O" not in board[computer_move_row][computer_move_column]:
+            board[computer_move_row][computer_move_column] = "O"
+            break
+
+
+
 
 
