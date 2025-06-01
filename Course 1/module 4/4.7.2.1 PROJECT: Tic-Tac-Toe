@@ -114,4 +114,4 @@ while win_status == "":
     win_status = victory_for(board,sign)
     
     
-print(win_status)
+print("the result of the game is",win_status)
