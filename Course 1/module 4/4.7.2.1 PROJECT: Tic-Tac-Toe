@@ -160,6 +160,9 @@ from random import randrange
 
 board = [["1","2","3"],["4","5","6"],["7","8","9"]]
 
+win_status = ""
+sign = ""
+
 def display_board(board):
     for x in board:
         print(x)
@@ -168,7 +171,7 @@ def display_board(board):
 def enter_move(board):
     # The function accepts the board's current status, asks the user about their move, 
     # checks the input, and updates the board according to the user's decision.
-    print()
+    
     while True:
         user_move = int(input("Enter your move: "))
         if user_move >9 or user_move <1:
@@ -186,22 +189,63 @@ def enter_move(board):
    
 
 
-#def make_list_of_free_fields(board):
+def make_list_of_free_fields(board):
     # The function browses the board and builds a list of all the free squares; 
     # the list consists of tuples, while each tuple is a pair of row and column numbers.
+    row_index = 0
+    free_positions = []
+    for row in board:
+        column_index = 0
+        for value in row:
+            if value != "X" and value != "O":
+                free_positions.append((row_index,column_index))
+            column_index += 1
+        row_index +=1
+    return free_positions
 
 
-#def victory_for(board, sign):
     # The function analyzes the board's status in order to check if 
     # the player using 'O's or 'X's has won the game
+def victory_for(board, sign):
+    win_status = ""
+    win_conditions = [
+        # Rows
+        [(0, 0), (0, 1), (0, 2)],  # (1,2,3) in 1-indexed
+        [(1, 0), (1, 1), (1, 2)],  # (4,5,6)
+        [(2, 0), (2, 1), (2, 2)],  # (7,8,9)
+        # Columns
+        [(0, 0), (1, 0), (2, 0)],  # (1,4,7)
+        [(0, 1), (1, 1), (2, 1)],  # (2,5,8)
+        [(0, 2), (1, 2), (2, 2)],  # (3,6,9)
+        # Diagonals
+        [(0, 0), (1, 1), (2, 2)],  # (1,5,9)
+        [(0, 2), (1, 1), (2, 0)]   # (3,5,7)
+        ]
+    for condition in win_conditions:
+        if (board[condition[0][0]][condition[0][1]]==sign and
+        board[condition[1][0]][condition[1][1]] == sign and
+        board[condition[2][0]][condition[2][1]] == sign):
+            win_status = sign
+        
+    if win_status != "X" and win_status != "O" and make_list_of_free_fields(board) == []:
+        win_status = "Tie"
+    return win_status
+        
+        
+        
+        
+             
+        
+        
+        
 
 
 def draw_move(board):
     # The function draws the computer's move and updates the board.
-    print("the computers move")
+    
     while True:
         computer_move = randrange(9)
-        computer_move_row = computer_move //3
+        computer_move_row = computer_move // 3
         computer_move_column = computer_move % 3
         if "X" not in board[computer_move_row][computer_move_column] and "O" not in board[computer_move_row][computer_move_column]:
             board[computer_move_row][computer_move_column] = "O"
@@ -209,20 +253,22 @@ def draw_move(board):
 
 
 
-
-
+print("Welcome to tic-tac-toe")
+print("the computer is O, you are X")
+print ("the computer moves first")
+board[1][1]= "O"
 display_board(board)
 
-draw_move(board)
-
-display_board(board)
-
-enter_move(board)
-
-display_board(board)
-
-draw_move(board)
-
-display_board(board)
-
-enter_move(board)
+while win_status == "":
+    
+    enter_move(board)
+    sign = "X"
+    display_board(board)
+    victory_for(board,sign)
+    draw_move(board)
+    sign = "O"
+    display_board(board)
+    victory_for(board,sign)
+    
+    
+print(win_status)
