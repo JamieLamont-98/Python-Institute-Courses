@@ -1,0 +1,27 @@
+def mysplit(strng):
+    my_list = []
+    var = ""
+    strng = strng.lstrip().rstrip()
+    
+    for x in strng:
+        
+        if x != " ":
+            var += x
+        
+        else:
+            my_list.append(var)
+            var = ""
+    
+    if var != "":
+        my_list.append(var)
+   
+    return my_list
+
+print(mysplit("To be or not to be, that is the question"))
+print(mysplit("To be or not to be,that is the question"))
+print(mysplit("   "))
+print(mysplit(" abc "))
+print(mysplit(""))
+
+
+
