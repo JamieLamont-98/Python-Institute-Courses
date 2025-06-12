@@ -1,0 +1,48 @@
+def mysplit(strng):
+    my_list = []
+    # Strip leading/trailing spaces once at the start
+    strng = strng.strip()
+
+    # Handle empty string case immediately after stripping
+    if not strng:
+        return []
+
+    current_pos = 0
+    while current_pos < len(strng):
+        # Find the next space from the current position
+        space_index = strng.find(' ', current_pos)
+
+        if space_index == -1: # No more spaces found
+            # The rest of the string is the last word
+            word = strng[current_pos:]
+            # Only append if it's not an empty string (handles cases like "word   ")
+            if word:
+                my_list.append(word)
+            break # Exit the loop as we've processed the end of the string
+        else:
+            # Extract the word up to the found space
+            word = strng[current_pos:space_index]
+            # Only append if it's not an empty string (handles multiple spaces like "word  another")
+            if word:
+                my_list.append(word)
+
+            # Move current_pos past the space(s)
+            # This inner loop handles multiple consecutive spaces
+            current_pos = space_index
+            while current_pos < len(strng) and strng[current_pos] == ' ':
+                current_pos += 1
+
+            # If current_pos lands on the end of the string after consuming spaces,
+            # and no word was found before that, we are done.
+            if current_pos == len(strng) and not word: # Added 'not word' to avoid issue with trailing spaces after a word
+                 break # Finished if we hit the end and the last word was empty
+
+    return my_list
+print(mysplit("To be or not to be, that is the question"))
+print(mysplit("To be or not to be,that is the question"))
+print(mysplit("   "))
+print(mysplit(" abc "))
+print(mysplit(""))
+
+
+
