@@ -1,0 +1,164 @@
+#---Digit Patterns--
+#These lists define the visual patterns for each digit (0-9)
+#using '#' for segments and ' ' for spaces. Each digit is represnted
+#as a list of 5 rows, and each row is a list of list characters
+
+
+
+
+
+
+
+digit_0 = [
+    ['#', '#', '#'], # Top
+    ['#', ' ', '#'],  # Side with a space in the middle
+    ['#', ' ', '#'],  # Side with a space in the middle
+    ['#', ' ', '#'],  # Side with a space in the middle
+    ['#', '#', '#']  # Bottom
+]
+
+
+digit_1 = [
+    [' ', '#', ' '], 
+    [' ', '#', ' '],  
+    [' ', '#', ' '],  
+    [' ', '#', ' '],  
+    [' ', '#', ' ']  
+]
+
+digit_2 = [
+    ['#', '#', '#'], 
+    [' ', ' ', '#'],  
+    ['#', '#', '#'],  
+    ['#', ' ', ' '],  
+    ['#', '#', '#']  
+]
+
+digit_3 = [
+    ['#', '#', '#'], 
+    [' ', ' ', '#'],  
+    ['#', '#', '#'],  
+    [' ', ' ', '#'],  
+    ['#', '#', '#']  
+]
+
+digit_4 = [
+    ['#', ' ', '#'], 
+    ['#', ' ', '#'],  
+    ['#', '#', '#'],  
+    [' ', ' ', '#'],  
+    [' ', ' ', '#']  
+]
+digit_5 = [
+    ['#', '#', '#'], 
+    ['#', ' ', ' '],  
+    ['#', '#', '#'],  
+    [' ', ' ', '#'],  
+    ['#', '#', '#']  
+]
+digit_6 = [
+    ['#', '#', '#'], 
+    ['#', ' ', ' '],  
+    ['#', '#', '#'],  
+    ['#', ' ', '#'],  
+    ['#', '#', '#']  
+]
+digit_7 = [
+    ['#', '#', '#'], 
+    [' ', ' ', '#'],  
+    [' ', ' ', '#'],  
+    [' ', ' ', '#'],  
+    [' ', ' ', '#']  
+]
+digit_8 = [
+    ['#', '#', '#'], 
+    ['#', ' ', '#'],  
+    ['#', '#', '#'],  
+    ['#', ' ', '#'],  
+    ['#', '#', '#']  
+]
+digit_9 = [
+    ['#', '#', '#'], 
+    ['#', ' ', '#'],  
+    ['#', '#', '#'],  
+    [' ', ' ', '#'],  
+    ['#', '#', '#']  
+]
+
+
+#---Number Dictionary---
+#This dictionary maps string representations of digits ("0" to "9")
+#to their corresponding visual pattern lists.
+number_dictionary = {
+    "0":digit_0,
+    "1":digit_1,
+    "2":digit_2, 
+    "3":digit_3,
+    "4":digit_4,
+    "5":digit_5,
+    "6":digit_6,
+    "7":digit_7,
+    "8":digit_8,
+    "9":digit_9
+}
+
+
+#---User Input Function---
+#This function prompts the user to enter a positive number
+#and validates the input to ensure it only contains digits.
+#It then converts the input number into a list of digit patterns
+def user_input():
+    #Loop indefinitely until valid input is received
+    while True:
+        user_choice = input("Enter a positive number: ")
+        #Check if the input only contains digits
+        if user_choice.isdigit():
+            break #exit the loop if input is valid
+        else:
+            print("Invalid input.")
+    
+    #Initialise an empty list to store the patterns for each digit in the users input.
+    digit_pattern_list =[]
+    
+    #iterate through each digit in the user's input string
+    for digit in user_choice:
+        #Append the corresponding visual pattern for the current digit from the dictionary
+        digit_pattern_list.append(number_dictionary[digit])
+    
+    #return the list of digit patterns
+    return digit_pattern_list
+    
+    
+#---Display Function---
+#This function takes a list of the digit patterns and prints them
+#horizontally, simulating a 7-segment display for the entire number
+def seven_display(digit_pattern_list):
+    #Iterate through each of the 5 rows that make up the height of a single digit pattern
+    for row_index in range(5):
+        #Initialise an empty list to build the current line of the display
+        current_list = []
+        
+        # Iterate through each individual digit pattern in the `digit_pattern_list`.
+        # This allows us to process the same row (row_index) for all digits.
+        for digit_pattern in digit_pattern_list:
+            # Join the characters of the current row of the current digit pattern
+            # into a single string (e.g., ['#', ' ', '#'] becomes "# #").
+            current_list.append("".join(digit_pattern[row_index]))
+             # Add three spaces as a separator between individual digit patterns for readability.
+            current_list.append("  ")
+        # Print the combined string for the current row across all digits.
+        print("".join(current_list))
+  
+
+#--- Main Program Execution ---
+#This is where the program starts running.
+
+# Call the user_input function to get the list of digit patterns
+# and store it in the 'var' variable
+var = user_input()
+
+# Call the seven_display function to print the numbers based on the
+# patterns stored in 'var'
+seven_display(var)
+    
+
