@@ -1,0 +1,100 @@
+digit_0 = [
+    ['#', '#', '#'], # Top
+    ['#', ' ', '#'],  # Side with a space in the middle
+    ['#', ' ', '#'],  # Side with a space in the middle
+    ['#', ' ', '#'],  # Side with a space in the middle
+    ['#', '#', '#']  # Bottom
+]
+
+
+digit_1 = [
+    [' ', '#', ' '], 
+    [' ', '#', ' '],  
+    [' ', '#', ' '],  
+    [' ', '#', ' '],  
+    [' ', '#', ' ']  
+]
+
+digit_2 = [
+    ['#', '#', '#'], 
+    [' ', ' ', '#'],  
+    ['#', '#', '#'],  
+    ['#', ' ', ' '],  
+    ['#', '#', '#']  
+]
+
+digit_3 = [
+    ['#', '#', '#'], 
+    [' ', ' ', '#'],  
+    ['#', '#', '#'],  
+    [' ', ' ', '#'],  
+    ['#', '#', '#']  
+]
+
+digit_4 = [
+    ['#', ' ', '#'], 
+    ['#', ' ', '#'],  
+    ['#', '#', '#'],  
+    [' ', ' ', '#'],  
+    [' ', ' ', '#']  
+]
+digit_5 = [
+    ['#', '#', '#'], 
+    ['#', ' ', ' '],  
+    ['#', '#', '#'],  
+    [' ', ' ', '#'],  
+    ['#', '#', '#']  
+]
+digit_6 = [
+    ['#', '#', '#'], 
+    ['#', ' ', ' '],  
+    ['#', '#', '#'],  
+    ['#', ' ', '#'],  
+    ['#', '#', '#']  
+]
+digit_7 = [
+    ['#', '#', '#'], 
+    [' ', ' ', '#'],  
+    [' ', ' ', '#'],  
+    [' ', ' ', '#'],  
+    [' ', ' ', '#']  
+]
+digit_8 = [
+    ['#', '#', '#'], 
+    ['#', ' ', '#'],  
+    ['#', '#', '#'],  
+    ['#', ' ', '#'],  
+    ['#', '#', '#']  
+]
+digit_9 = [
+    ['#', '#', '#'], 
+    ['#', ' ', '#'],  
+    ['#', '#', '#'],  
+    [' ', ' ', '#'],  
+    ['#', '#', '#']  
+]
+
+number_list = [digit_0,digit_1,digit_2,digit_3,digit_4,digit_5,digit_6,digit_7,digit_8,digit_9]
+
+def users_choice():
+    user_choice_list = []
+    user_number = input("Choose a positive value: ")
+    
+    for char in user_number:
+        user_choice_list.append(number_list[int(char)])
+        
+    
+    
+    
+    for row_index in range(5):
+        current_line_parts = []
+        for digit_patterns in user_choice_list:
+            
+            current_line_parts.append("".join(digit_patterns[row_index])) 
+            current_line_parts.append("  ")
+        
+        print("".join(current_line_parts))
+    return ""
+        
+    
+print(users_choice())
