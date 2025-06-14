@@ -176,7 +176,7 @@ def number_printer(my_list):
         for digit_pattern in digits_to_display:
             # Get the current row for the current digit and join its characters
             current_line_parts.append("".join(digit_pattern[row_index]))
-            current_line_parts.append("   ") # Add some spaces between digits
+            current_line_parts.append("  ") # Add some spaces between digits
 
         # Join all the parts for the current line and print it
         print("".join(current_line_parts))
