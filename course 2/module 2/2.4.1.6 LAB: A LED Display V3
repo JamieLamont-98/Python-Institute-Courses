@@ -19,11 +19,11 @@ digit_0 = [
 
 
 digit_1 = [
-    [' ', '#', ' '], 
-    [' ', '#', ' '],  
-    [' ', '#', ' '],  
-    [' ', '#', ' '],  
-    [' ', '#', ' ']  
+    [' ', ' ', '#'], 
+    [' ', ' ', '#'],  
+    [' ', ' ', '#'],  
+    [' ', ' ', '#'],  
+    [' ', ' ', '#']  
 ]
 
 digit_2 = [
@@ -144,8 +144,8 @@ def seven_display(digit_pattern_list):
             # Join the characters of the current row of the current digit pattern
             # into a single string (e.g., ['#', ' ', '#'] becomes "# #").
             current_list.append("".join(digit_pattern[row_index]))
-             # Add three spaces as a separator between individual digit patterns for readability.
-            current_list.append("  ")
+             # Add a space as a separator between individual digit patterns for readability.
+            current_list.append(" ")
         # Print the combined string for the current row across all digits.
         print("".join(current_list))
   
