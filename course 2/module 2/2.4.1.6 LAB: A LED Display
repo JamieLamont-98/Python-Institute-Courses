@@ -1,0 +1,195 @@
+
+Estimated time
+30 minutes
+
+Level of difficulty
+Medium
+
+Objectives
+improving the student's skills in operating with strings;
+using strings to represent non-text data.
+Scenario
+You've surely seen a seven-segment display.
+
+It's a device (sometimes electronic, sometimes mechanical) designed to present one decimal digit using a subset of seven segments. If you still don't know what it is, refer to the following Wikipedia article.
+
+Your task is to write a program which is able to simulate the work of a seven-display device, although you're going to use single LEDs instead of segments.
+
+Each digit is constructed from 13 LEDs (some lit, some dark, of course) - that's how we imagine it:
+
+  # ### ### # # ### ### ### ### ### ### 
+  #   #   # # # #   #     # # # # # # # 
+  # ### ### ### ### ###   # ### ### # # 
+  # #     #   #   # # #   # # #   # # # 
+  # ### ###   # ### ###   # ### ### ###
+
+Note: the number 8 shows all the LED lights on.
+
+Your code has to display any non-negative integer number entered by the user.
+
+Tip: using a list containing patterns of all ten digits may be very helpful.
+
+Test data
+Sample input:
+
+123
+
+Sample output:
+
+  # ### ### 
+  #   #   # 
+  # ### ### 
+  # #     # 
+  # ### ### 
+
+Sample input:
+
+9081726354
+
+Sample output:
+
+### ### ###   # ### ### ### ### ### # # 
+# # # # # #   #   #   # #     # #   # # 
+### # # ###   #   # ### ### ### ### ### 
+  # # # # #   #   # #   # #   #   #   # 
+### ### ###   #   # ### ### ### ###   # 
+
+
+
+
+#######################################################################################################################################################################################################################################
+
+
+digit_0 = [
+    ['#', '#', '#'], # Top
+    ['#', ' ', '#'],  # Side with a space in the middle
+    ['#', ' ', '#'],  # Side with a space in the middle
+    ['#', ' ', '#'],  # Side with a space in the middle
+    ['#', '#', '#']  # Bottom
+]
+
+
+digit_1 = [
+    [' ', '#', ' '], 
+    [' ', '#', ' '],  
+    [' ', '#', ' '],  
+    [' ', '#', ' '],  
+    [' ', '#', ' ']  
+]
+
+digit_2 = [
+    ['#', '#', '#'], 
+    [' ', ' ', '#'],  
+    ['#', '#', '#'],  
+    ['#', ' ', ' '],  
+    ['#', '#', '#']  
+]
+
+digit_3 = [
+    ['#', '#', '#'], 
+    [' ', ' ', '#'],  
+    ['#', '#', '#'],  
+    [' ', ' ', '#'],  
+    ['#', '#', '#']  
+]
+
+digit_4 = [
+    ['#', ' ', '#'], 
+    ['#', ' ', '#'],  
+    ['#', '#', '#'],  
+    [' ', ' ', '#'],  
+    [' ', ' ', '#']  
+]
+digit_5 = [
+    ['#', '#', '#'], 
+    ['#', ' ', ' '],  
+    ['#', '#', '#'],  
+    [' ', ' ', '#'],  
+    ['#', '#', '#']  
+]
+digit_6 = [
+    ['#', '#', '#'], 
+    ['#', ' ', ' '],  
+    ['#', '#', '#'],  
+    ['#', ' ', '#'],  
+    ['#', '#', '#']  
+]
+digit_7 = [
+    ['#', '#', '#'], 
+    [' ', ' ', '#'],  
+    [' ', ' ', '#'],  
+    [' ', ' ', '#'],  
+    [' ', ' ', '#']  
+]
+digit_8 = [
+    ['#', '#', '#'], 
+    ['#', ' ', '#'],  
+    ['#', '#', '#'],  
+    ['#', ' ', '#'],  
+    ['#', '#', '#']  
+]
+digit_9 = [
+    ['#', '#', '#'], 
+    ['#', ' ', '#'],  
+    ['#', '#', '#'],  
+    [' ', ' ', '#'],  
+    ['#', '#', '#']  
+]
+
+number_dict = {
+    "0":digit_0,
+    "1":digit_1,
+    "2":digit_2,
+    "3":digit_3,
+    "4":digit_4,
+    "5":digit_5,
+    "6":digit_6,
+    "7":digit_7,
+    "8":digit_8,
+    "9":digit_9
+    }
+    
+
+    
+
+def user_number():
+    user_choice_list = []
+    user_choice = input("enter a positive number: ")   
+    for x in user_choice:
+        user_choice_list.append(x)
+    return(user_choice_list)
+
+
+
+
+def number_printer(my_list):
+    # This list will hold the actual digit patterns (e.g., digit_1, digit_2)
+    digits_to_display = []
+    for digit_char in my_list:
+        digits_to_display.append(number_dict[digit_char])
+
+    # We need to iterate through the rows, printing one row from each digit
+    # before moving to the next row.
+    # All digits have 5 rows, so we can iterate 5 times.
+    for row_index in range(5):
+        current_line_parts = []
+        for digit_pattern in digits_to_display:
+            # Get the current row for the current digit and join its characters
+            current_line_parts.append("".join(digit_pattern[row_index]))
+            current_line_parts.append("   ") # Add some spaces between digits
+
+        # Join all the parts for the current line and print it
+        print("".join(current_line_parts))
+
+my_list = user_number()
+number_printer(my_list)
+
+    
+    
+    
+
+    
+
+
+
+
