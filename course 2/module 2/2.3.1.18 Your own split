@@ -9,7 +9,8 @@ def mysplit(strng):
             var += x
         
         else:
-            my_list.append(var)
+            if var !="":
+                my_list.append(var)
             var = ""
     
     if var != "":
@@ -17,11 +18,14 @@ def mysplit(strng):
    
     return my_list
 
+
 print(mysplit("To be or not to be, that is the question"))
 print(mysplit("To be or not to be,that is the question"))
 print(mysplit("   "))
 print(mysplit(" abc "))
 print(mysplit(""))
+print(mysplit("hello  world"))
+
     
 
 
