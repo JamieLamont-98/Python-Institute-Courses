@@ -1,0 +1,18 @@
+#The Hamming distance between two equal-length strings of symbols is the number of positions at which the corresponding symbols are different.
+
+
+
+
+#---Hamming Distance Algorith---
+
+def hamming_distance(string1: str, string2: str) -> int:
+    """Return the Hamming distance between two strings."""
+    if len(string1) != len(string2):
+        raise ValueError("Strings must be of equal length.")
+    dist_counter = 0
+    for n in range(len(string1)):
+        if string1[n] != string2[n]:
+            dist_counter += 1
+    return dist_counter
+
+print(hamming_distance("science","essence"))
