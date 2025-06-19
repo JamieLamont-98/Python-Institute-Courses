@@ -1,0 +1,125 @@
+Estimated time
+30-90 minutes
+
+Level of difficulty
+Hard
+
+Pre-requisites
+Module 1.11.1.1, Module 1.11.1.2
+
+Objectives
+improving the student's skills in operating with strings;
+converting characters into ASCII code, and vice versa.
+Scenario
+You are already familiar with the Caesar cipher, and this is why we want you to improve the code we showed you recently.
+
+The original Caesar cipher shifts each character by one: a becomes b, z becomes a, and so on. Let's make it a bit harder, and allow the shifted value to come from the range 1..25 inclusive.
+
+Moreover, let the code preserve the letters' case (lower-case letters will remain lower-case) and all non-alphabetical characters should remain untouched.
+
+Your task is to write a program which:
+
+asks the user for one line of text to encrypt;
+asks the user for a shift value (an integer number from the range 1..25 - note: you should force the user to enter a valid shift value (don't give up and don't let bad data fool you!)
+prints out the encoded text.
+Test your code using the data we've provided.
+
+Test data
+Sample input:
+
+abcxyzABCxyz 123
+2
+
+Sample output:
+
+cdezabCDEzab 123
+
+Sample input:
+
+The die is cast
+25
+
+Sample output:
+
+Sgd chd hr bzrs
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+"""
+This code implements a Caeser cipher, a simple substitution where each letter
+in the plaintext is replaced by a letter some fixed number of positions down the alphabet
+"""
+
+
+
+#Prompt the user to enter their message.
+text = input("Enter your message here: ")
+
+#Loop indefinitely until a valid shift value is entered
+while True:
+    # Get the shift value from the user and convert it to an integer
+    shift_value = int(input("Enter a shift value between 1 and 25: "))
+    
+    # Check if the entered shift value is within the valid range (1-25)
+    if shift_value <1 or shift_value >25:
+        #If not valid, print an error message
+        print("That is not a valid shift value, please choose again")
+    else:
+        #If valid, exit the loop
+        break
+#Initialise an empty string to store the encrypted message
+cipher = ''
+
+#Iterate through each character in the input text
+for char in text:
+    # If the character is not an alphabet letter (e.g., space, number, symbol),
+    # append it directly to the cipher without modification
+    if not char.isalpha():
+        cipher += char
+        
+   
+        
+    #If the character is a lowercase letter (ASCII values 97 to 122)
+    elif ord(char) >= 97 and ord(char)<=122:
+        # Calculate the original position of the letter in the alphabet (0-25)
+        original_position = ord(char)- ord('a')
+        #Calculate a new, shifted position using the modulo operator to wrap around the alphabet
+        shifted_position = (original_position + shift_value)%26
+          # Convert the shifted position back to its ASCII value for a lowercase letter.
+        new_char = shifted_position + ord('a')
+        # Append the new encrypted character to the cipher.
+        cipher += chr(new_char)
+        
+    # If the character is an uppercase letter (ASCII values 65 to 90):
+    elif ord(char) >= 65 and ord(char) <= 90:
+        # Calculate the original position of the letter in the alphabet (0-25).
+        original_position = ord(char) - ord('A')
+        # Calculate the new, shifted position using the modulo operator to wrap around the alphabet.
+        shifted_position = (original_position + shift_value) % 26
+        # Convert the shifted position back to its ASCII value for an uppercase letter.
+        new_char = shifted_position + ord('A')
+        # Append the new encrypted character to the cipher.
+        cipher += chr(new_char)
+
+# Print the final encrypted message.    
+print(cipher)
+            
+        
+    
+    
