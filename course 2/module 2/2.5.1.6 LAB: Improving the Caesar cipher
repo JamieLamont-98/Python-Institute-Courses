@@ -66,8 +66,6 @@ This code implements a Caeser cipher, a simple substitution where each letter
 in the plaintext is replaced by a letter some fixed number of positions down the alphabet
 """
 
-
-
 def caesar_cypher_input():
     text = input("Enter your secret message here: ")
     
@@ -166,11 +164,18 @@ while True:
     
     if game_status == "yes":
         while True:
-            cypher_choice = input("Which service do you require: encrypt/decrypt. ").lower()
+            cypher_choice = input("Which service do you require: encrypt/decrypt or exit. ").lower()
             if cypher_choice == "encrypt" or cypher_choice == "decrypt":
+                break
+            elif cypher_choice == "exit":
+                print("Exiting cypher service selection")
                 break
             else:
                 print("You have entered an invalid input.")
+    
+    if cypher_choice == "exit":
+        print("No cypher service needed.")
+        break
     
     if cypher_choice == "encrypt":
         caesar_cypher_input()
@@ -178,6 +183,4 @@ while True:
     elif cypher_choice == "decrypt":
         caesar_cypher_extractor()
         
-    
-        
-    
+
