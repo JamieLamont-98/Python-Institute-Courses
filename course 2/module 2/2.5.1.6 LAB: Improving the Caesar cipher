@@ -68,58 +68,85 @@ in the plaintext is replaced by a letter some fixed number of positions down the
 
 
 
-#Prompt the user to enter their message.
-text = input("Enter your message here: ")
-
-#Loop indefinitely until a valid shift value is entered
-while True:
-    # Get the shift value from the user and convert it to an integer
-    shift_value = int(input("Enter a shift value between 1 and 25: "))
+def caesar_cypher_input():
+    text = input("Enter your secret message here: ")
     
-    # Check if the entered shift value is within the valid range (1-25)
-    if shift_value <1 or shift_value >25:
-        #If not valid, print an error message
-        print("That is not a valid shift value, please choose again")
-    else:
-        #If valid, exit the loop
-        break
-#Initialise an empty string to store the encrypted message
-cipher = ''
-
-#Iterate through each character in the input text
-for char in text:
-    # If the character is not an alphabet letter (e.g., space, number, symbol),
-    # append it directly to the cipher without modification
-    if not char.isalpha():
-        cipher += char
-        
-   
-        
-    #If the character is a lowercase letter (ASCII values 97 to 122)
-    elif ord(char) >= 97 and ord(char)<=122:
-        # Calculate the original position of the letter in the alphabet (0-25)
-        original_position = ord(char)- ord('a')
-        #Calculate a new, shifted position using the modulo operator to wrap around the alphabet
-        shifted_position = (original_position + shift_value)%26
-          # Convert the shifted position back to its ASCII value for a lowercase letter.
-        new_char = shifted_position + ord('a')
-        # Append the new encrypted character to the cipher.
-        cipher += chr(new_char)
-        
-    # If the character is an uppercase letter (ASCII values 65 to 90):
-    elif ord(char) >= 65 and ord(char) <= 90:
-        # Calculate the original position of the letter in the alphabet (0-25).
-        original_position = ord(char) - ord('A')
-        # Calculate the new, shifted position using the modulo operator to wrap around the alphabet.
-        shifted_position = (original_position + shift_value) % 26
-        # Convert the shifted position back to its ASCII value for an uppercase letter.
-        new_char = shifted_position + ord('A')
-        # Append the new encrypted character to the cipher.
-        cipher += chr(new_char)
-
-# Print the final encrypted message.    
-print(cipher)
+    while True:
+        try:
+            shift_value = int(input("Enter a shift value between 1 and 25: "))
+            if 1<= shift_value <=25:
+                break
             
+            else:
+                print("Error that value is not between 1 and 25")
+    
         
+        except:
+            print("Error: Invalid input. Please enter a whole number.")
+
+    cipher = ''
+
+    for char in text:
     
+        if not char.isalpha():
+            cipher += char
     
+        elif 65 <= ord(char) <=90:
+            original_position = ord(char) - ord('A')
+            shifted_position = (original_position +shift_value) %26
+            new_position = shifted_position + ord('A')
+            cipher += chr(new_position)
+ 
+        elif 97 <= ord(char) <=122:
+            original_position = ord(char) - ord('a')
+            shifted_position = (original_position +shift_value) %26
+            new_position = shifted_position + ord('a')
+            cipher += chr(new_position)       
+
+
+
+    return cipher
+
+
+
+
+def caesar_cypher_extractor():
+    text = (input("Enter your secret cypher: "))
+        
+    while True:
+        try:
+            shift_value = int(input("Enter the shift value for your secret cypher: "))
+            if 1<= shift_value <=25:
+                break
+            
+            else:
+                print("Error that value is not between 1 and 25")
+    
+        
+        except:
+            print("Error: Invalid input. Please enter a whole number.")
+    
+    cipher = ''
+    
+    for char in text:
+    
+        if not char.isalpha():
+            cipher += char
+    
+        elif 65 <= ord(char) <=90:
+            new_position = ord(char) - ord('A')
+            pre_shifted_position = (new_position - shift_value +26) %26
+            original_position = pre_shifted_position + ord('A')
+            cipher += chr(original_position)
+ 
+ 
+ 
+        elif 97 <= ord(char) <=122:
+            new_position = ord(char) - ord('a')
+            pre_shifted_position = (new_position - shift_value +26) %26
+            original_position = pre_shifted_position + ord('a')
+            cipher += chr(original_position)     
+    
+    return cipher
+
+print(caesar_cypher_extractor())
