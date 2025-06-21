@@ -105,7 +105,7 @@ def caesar_cypher_input():
 
 
 
-    return cipher
+    print(cipher)
 
 
 
@@ -147,6 +147,37 @@ def caesar_cypher_extractor():
             original_position = pre_shifted_position + ord('a')
             cipher += chr(original_position)     
     
-    return cipher
+    print(cipher)
 
-print(caesar_cypher_extractor())
+
+
+
+while True:
+    while True:
+        game_status = input("do you require a cypher service: yes/no. ").lower()
+        if game_status == "yes" or game_status == "no":
+            break
+        else:
+            print("you have entered an invalid answer")
+    
+    if game_status == "no":
+        print("No cypher service needed.")
+        break
+    
+    if game_status == "yes":
+        while True:
+            cypher_choice = input("Which service do you require: encrypt/decrypt. ").lower()
+            if cypher_choice == "encrypt" or cypher_choice == "decrypt":
+                break
+            else:
+                print("You have entered an invalid input.")
+    
+    if cypher_choice == "encrypt":
+        caesar_cypher_input()
+    
+    elif cypher_choice == "decrypt":
+        caesar_cypher_extractor()
+        
+    
+        
+    
