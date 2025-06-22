@@ -81,3 +81,30 @@ def palindrome_checker():
 
 
 palindrome_checker()
+
+
+
+
+
+
+
+
+
+
+def palindrome_checker_string_methods():
+    text = input("Enter some text: ")
+    
+    if not text:
+        print("Not a palindrome.")
+        return
+    
+    # Remove spaces and convert to lowercase.
+    cleaned_text = "".join(char for char in text if char.isalnum()).lower()
+    
+    if cleaned_text ==  cleaned_text[::-1]:
+        print(text,"is a palindrome.")
+        
+    else:
+        print(text,"is not a palindrome")
+
+palindrome_checker_string_methods()
