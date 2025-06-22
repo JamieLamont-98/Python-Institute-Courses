@@ -143,3 +143,31 @@ def palindrome_checker_two_pointers():
 
 # Example usage:
 # palindrome_checker_two_pointers()
+
+
+
+
+
+
+import re
+
+def palindrome_checker_regex():
+    text = input("Enter some text: ")
+
+    if not text:
+        print("Not a palindrome.")
+        return
+
+    # Use a regex to keep only alphanumeric characters and convert to lowercase
+    # \W matches any non-alphanumeric character (equivalent to [^a-zA-Z0-9_])
+    # The underscore is included by \w, so \W includes spaces and punctuation
+    cleaned_text = re.sub(r'[^a-zA-Z0-9]', '', text).lower()
+
+
+    if cleaned_text == cleaned_text[::-1]:
+        print(f"'{text}' is a palindrome.")
+    else:
+        print(f"'{text}' is not a palindrome.")
+
+# Example usage:
+palindrome_checker_regex()
