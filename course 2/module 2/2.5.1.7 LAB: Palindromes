@@ -61,21 +61,23 @@ It's not a palindrome
 
 def palindrome_checker():
     text = input("Enter a palindrome: ")
-    changed_text = text.lower()
     
-    if input == "":
-        print("Not a palindrome.")
+    if not text:
+        print("Not a palindrome")
+        return
     
-    var = ""
     
-    for char in changed_text:
+    processed_text = ""
+    
+    for char in text:
         if char.isalnum():
-            var += char
+            processed_text += char.lower()
     
-    if var == var[::-1]:
+    if processed_text == processed_text[::-1]:
         print(text,"is a palindrome.")
     
     else:
         print(text,"is not a palindrome.")
+
 
 palindrome_checker()
