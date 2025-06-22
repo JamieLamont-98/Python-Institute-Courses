@@ -1,0 +1,28 @@
+#First attempt
+
+def anagram():
+    text_1 = input("Enter your first word: ")
+        
+
+    text_2 = input("Enter your second word: ")
+        
+        
+    if not text_1 and not text_2:
+        print("Not an anagram.")
+        
+    
+    text_1 = "".join(char for char in text_1 if char.isalnum()).lower()   
+    
+    text_2 = "".join(char for char in text_2 if char.isalnum()).lower() 
+    
+    text_1 = sorted(text_1)
+    
+    text_2 = sorted(text_2)
+    
+    if text_1 == text_2:
+        print("Anagrams")
+    else:
+        print("Not anagrams")
+        
+
+anagram()
