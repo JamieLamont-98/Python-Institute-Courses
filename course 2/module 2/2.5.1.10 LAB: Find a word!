@@ -81,3 +81,57 @@ def find_a_word():
         print("no")
 
 find_a_word()
+
+
+
+
+////////////////////////////////////////////////////////////////
+
+def find_a_word():
+    string_one = input("Enter the first string: ").lower()
+    string_two = input("Enter the second string: ").lower()
+    
+    current_search_start_index = 0
+    found_all_chars = True
+
+    for char in string_one:
+        found_index = string_two.find(char, current_search_start_index)
+        
+        if found_index == -1:
+            found_all_chars = False
+            break
+        else:
+            current_search_start_index = found_index + 1
+    
+    if found_all_chars:
+        print("Yes")
+    else:
+        print("No")
+
+
+
+
+
+
+////////////////////////////////////////////////////////////
+
+
+
+
+def check_hidden_word_two_pointers():
+    s1 = input("Enter the first string: ").lower()
+    s2 = input("Enter the second string: ").lower()
+
+    i = 0  # Pointer for s1
+    j = 0  # Pointer for s2
+
+    while i < len(s1) and j < len(s2):
+        if s1[i] == s2[j]:
+            i += 1  # Move to the next character in s1
+        j += 1      # Always move to the next character in s2
+
+    # If all characters of s1 were found, i will have reached len(s1)
+    if i == len(s1):
+        print("Yes")
+    else:
+        print("No")
