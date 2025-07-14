@@ -1,0 +1,29 @@
+# A function to create an empty Sudoku board
+def create_empty_sudoku_board():
+    """Creates a 9x9 list of lists, with each cell initialized to 0."""
+    return [[0 for _ in range(9)] for _ in range(9)]
+
+# A function to print the board with separators for clarity
+def print_sudoku_board(board):
+    """Prints the 9x9 Sudoku board in a readable format."""
+    for i in range(len(board)):
+        # Add a horizontal separator every 3 rows (after rows 2 and 5)
+        if i > 0 and i % 3 == 0:
+            print("- - - - - - - - - - -")
+
+        for j in range(len(board[i])):
+            # Add a vertical separator every 3 columns (after columns 2 and 5)
+            if j > 0 and j % 3 == 0:
+                print("| ", end="")
+            
+            # Print the cell value
+            print(board[i][j], end=" ")
+        
+        # Move to the next line after each row
+        print()
+
+# --- Create and Display the Empty Board ---
+sudoku_board = create_empty_sudoku_board()
+
+print("An empty 9x9 Sudoku board:")
+print_sudoku_board(sudoku_board)
