@@ -1,29 +1,71 @@
-# A function to create an empty Sudoku board
-def create_empty_sudoku_board():
-    """Creates a 9x9 list of lists, with each cell initialized to 0."""
-    return [[0 for _ in range(9)] for _ in range(9)]
+def check_rows(board):
+    """Checks if each row contains the numbers 1-9 exactly once."""
+    valid_set = {1, 2, 3, 4, 5, 6, 7, 8, 9}
+    for row in board:
+        if set(row) != valid_set:
+            return False
+    return True
 
-# A function to print the board with separators for clarity
-def print_sudoku_board(board):
-    """Prints the 9x9 Sudoku board in a readable format."""
-    for i in range(len(board)):
-        # Add a horizontal separator every 3 rows (after rows 2 and 5)
-        if i > 0 and i % 3 == 0:
-            print("- - - - - - - - - - -")
+def check_columns(board):
+    """Checks if each column contains the numbers 1-9 exactly once."""
+    valid_set = {1, 2, 3, 4, 5, 6, 7, 8, 9}
+    for col_index in range(9):
+        column = [board[row_index][col_index] for row_index in range(9)]
+        if set(column) != valid_set:
+            return False
+    return True
 
-        for j in range(len(board[i])):
-            # Add a vertical separator every 3 columns (after columns 2 and 5)
-            if j > 0 and j % 3 == 0:
-                print("| ", end="")
-            
-            # Print the cell value
-            print(board[i][j], end=" ")
+def check_squares(board):
+    """Checks if each 3x3 square contains the numbers 1-9 exactly once."""
+    valid_set = {1, 2, 3, 4, 5, 6, 7, 8, 9}
+    for start_row in range(0, 9, 3):
+        for start_col in range(0, 9, 3):
+            square = [
+                board[row][col]
+                for row in range(start_row, start_row + 3)
+                for col in range(start_col, start_col + 3)
+            ]
+            if set(square) != valid_set:
+                return False
+    return True
+
+def is_solved(board):
+    """Returns True if the Sudoku board is solved, otherwise False."""
+    return check_rows(board) and check_columns(board) and check_squares(board)
+
+def sudoku_checker():
+    """Takes user input, creates a board, and checks if it's a valid solution."""
+    while True:
+        user_input = input("Enter your 81-digit Sudoku solution (numbers only, spaces will be ignored):\n> ")
+        user_input = user_input.replace(" ", "")
         
-        # Move to the next line after each row
-        print()
+        if len(user_input) != 81:
+            print(f"\nError: Input must contain exactly 81 digits. You entered {len(user_input)}.")
+            continue # Ask for input again
+            
+        if not user_input.isdigit():
+            print("\nError: Input must only contain numbers (1-9).")
+            continue # Ask for input again
+        
+        # If input is valid, break the loop
+        break
 
-# --- Create and Display the Empty Board ---
-sudoku_board = create_empty_sudoku_board()
+    # Convert the 81-character string into a 9x9 list of strings
+    board_of_strings = [user_input[i:i + 9] for i in range(0, 81, 9)]
+    
+    # Convert the list of strings into a 9x9 list of integers
+    board = [[int(char) for char in row] for row in board_of_strings]
+    
+    print("\nHere is the board you entered:")
+    for row in board:
+        # The *row unpacks the list for cleaner printing
+        print(*row)
 
-print("An empty 9x9 Sudoku board:")
-print_sudoku_board(sudoku_board)
+    # Check the board and print the result
+    if is_solved(board):
+        print("\nCongratulations! This is a valid Sudoku solution. ✅")
+    else:
+        print("\nSorry, this is not a valid Sudoku solution. ❌")
+
+# --- Run the checker ---
+sudoku_checker()
