@@ -20,47 +20,28 @@ Sorry, I can't serve your request.
 
 class WeekDayError(Exception):
     pass
-    
+	
+
 class Weeker:
     
-    days_of_week_dict = {
-        "Mon": 1,
-        "Tue": 2,
-        "Wed": 3,
-        "Thu": 4,
-        "Fri": 5,
-        "Sat": 6,
-        "Sun": 7
-    }
-
-    days_of_week_reversed_dict = {
-        1: "Mon",
-        2: "Tue",
-        3: "Wed",
-        4: "Thu",
-        5: "Fri",
-        6: "Sat",
-        7: "Sun"
-    }
+    weekday = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
 
     def __init__(self, day):
-        if day not in self.days_of_week_dict:
+        #I want to check if day is in week_day and return the index position
+        try:
+            self.__day = Weeker.weekday.index(day)
+        except:
             raise WeekDayError
-        else:
-            self.__day = day
 
     def __str__(self):
-        return str(self.__day)
+        return Weeker.weekday[self.__day]
 
     def add_days(self, n):
-        current_day_number = self.days_of_week_dict[self.__day]
-        new_day_number = (current_day_number - 1 + n) % 7 + 1
-        self.__day = self.days_of_week_reversed_dict[new_day_number]
+        self.__day = (self.__day + n)%7
 
     def subtract_days(self, n):
-        current_day_number = self.days_of_week_dict[self.__day]
-        new_day_number = (current_day_number - 1 - n) % 7 + 1
-        self.__day = self.days_of_week_reversed_dict[new_day_number]
+        self.__day = (self.__day -n)%7
+
 
 try:
     weekday = Weeker('Mon')
