@@ -24,17 +24,17 @@ class WeekDayError(Exception):
 
 class Weeker:
     
-    weekday = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
+    __weekday = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
 
     def __init__(self, day):
         #I want to check if day is in week_day and return the index position
         try:
-            self.__day = Weeker.weekday.index(day)
+            self.__day = Weeker.__weekday.index(day)
         except:
             raise WeekDayError
 
     def __str__(self):
-        return Weeker.weekday[self.__day]
+        return Weeker.__weekday[self.__day]
 
     def add_days(self, n):
         self.__day = (self.__day + n)%7
